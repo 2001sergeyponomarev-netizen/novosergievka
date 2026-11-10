@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0d1a12">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.github.com; img-src 'self' data:; form-action 'self'; base-uri 'self'">
+<title>Администратор · Made in USSR — FS25</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color-scheme:dark;--bg:#0b170f;--card:#182d1d;--card2:#203827;--text:#edf4eb;--muted:#b2c2af;--border:#3c5540;--lime:#d2e997;--orange:#dcbc81}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 18% 0%,#25432b,var(--bg) 70%);color:var(--text);line-height:1.5}
+a{color:var(--lime)}header{border-bottom:1px solid var(--border);background:#0c1a12e9;padding:15px max(16px,3vw);display:flex;justify-content:space-between;align-items:center;gap:10px}
+header strong{font-size:20px}header small{display:block;font-size:11px;letter-spacing:.12em;color:var(--lime);font-weight:800}header a{font-size:13px;text-decoration:none;border:1px solid var(--border);border-radius:9px;padding:8px 12px}
+main{max-width:1350px;margin:auto;padding:22px 17px 45px}
+h1{font-size:clamp(24px,3vw,33px);margin:0 0 5px}h2{margin:0 0 14px;font-size:18px}h3{font-size:15px;margin:0 0 9px}p{margin:0 0 13px}.muted{color:var(--muted)}.lead{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.eyebrow{color:var(--lime);letter-spacing:.13em;font-weight:800;font-size:11px}.chip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:30px;border:1px solid #5b744f;background:#1b3320;color:#dcefd0;font-size:12px}
+.panel{background:linear-gradient(145deg,#1a3020,#15281b);border:1px solid var(--border);border-radius:15px;padding:18px}
+.access{display:grid;grid-template-columns:1fr auto;gap:16px;margin-bottom:18px;align-items:end}
+.access .tokenline{display:flex;gap:9px;flex-wrap:wrap;align-items:stretch}
+label{display:block;color:#d2ddcf;font-size:13px;font-weight:650}
+input,select,textarea{display:block;width:100%;background:#0f2116;border:1px solid #4c6650;border-radius:8px;color:#f4f8f2;font:inherit;font-size:14px;min-height:42px;margin-top:6px;padding:9px 10px}
+textarea{resize:vertical;min-height:81px}input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid #d8f49f;outline-offset:2px}
+input::placeholder,textarea::placeholder{color:#839886}
+button{border:1px solid #587354;border-radius:9px;padding:10px 15px;font:inherit;font-size:14px;color:var(--text);background:#2a4930;cursor:pointer;font-weight:700;min-height:43px}
+button:hover:not(:disabled){background:#3c6543}button:disabled{opacity:.5;cursor:not-allowed}
+button.primary{background:#cfeb97;border-color:#cfeb97;color:#1b2a17}button.primary:hover:not(:disabled){background:#e5ffaf}
+button.secondary{background:#1b2d20}button.danger{background:#48312b;border-color:#835a4c}
+input[type=password]{max-width:500px;min-width:200px;margin-top:0;flex:1}
+.access .tip{font-size:12px;margin-top:10px;color:var(--muted)}
+.access .tip a{white-space:nowrap}
+.status{padding:12px 14px;border-radius:10px;background:#344630;color:#e8eecb;border:1px solid #596952;display:none;margin:0 0 16px;white-space:pre-wrap}
+.status.show{display:block}.status.error{background:#4b2725;border-color:#a26862;color:#ffd9d4}.status.success{background:#1f5135;border-color:#72a77c}
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:15px}
+.selectbar{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:12px}.selectbar small{color:var(--muted)}
+.fields{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.fields button{padding:7px 0;min-height:42px}.fields button.active{color:#213020;background:#d2ed9a}.fields button.changed{border-color:#facd75}
+.note{border-top:1px solid var(--border);margin-top:19px;padding-top:15px;color:var(--muted);font-size:12px}
+.editorgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.editorgrid .wide{grid-column:1/-1}.owner{margin-bottom:13px}
+.cropfield{border:1px solid #36593c;border-radius:10px;padding:12px;background:#1d3523}.cropfield label{font-size:12px}.fieldhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}.fieldhead span{color:#b4ccac;font-size:12px}.editor-actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}
+.summary{margin-top:18px}.summary table{border-collapse:collapse;width:100%;text-align:left}.summary th,.summary td{border-bottom:1px solid #2f4636;padding:10px 9px;font-size:13px}.summary th{color:#bdcfb8;font-weight:650}.tablewrap{overflow:auto}.summary td button{background:transparent;border:0;min-height:0;padding:0 4px;color:var(--lime);font-weight:800}
+.bulk{margin-top:17px}.bulk-grid{display:grid;grid-template-columns:minmax(180px,1fr) 150px minmax(180px,1fr) auto;gap:12px;align-items:end}
+.help{font-size:12px;color:var(--muted);margin-top:14px}.submitline{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+.dirty{color:#f7d490;font-weight:700}.saved{color:#b7eaa7;font-weight:700}
+@media(max-width:990px){.layout{grid-template-columns:1fr}.bulk-grid{grid-template-columns:1fr 1fr}.bulk-grid label:first-child{grid-column:1/-1}}
+@media(max-width:650px){header strong{font-size:15px}.access{grid-template-columns:1fr}.editorgrid{grid-template-columns:1fr}.editorgrid .wide{grid-column:1}.bulk-grid{grid-template-columns:1fr}.bulk-grid label:first-child{grid-column:1}main{padding:15px 10px 28px}.panel{padding:13px}.summary th,.summary td{white-space:nowrap}.access .tokenline{display:grid;grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div><small>🌾 MADE IN USSR / FS25</small><strong>Панель администратора</strong></div><a href="index.html">← Вернуться на карту</a></header>
+<main>
+<div class="lead"><div><div class="eyebrow">НОВОСЕРГЕЕВКА · СЕВООБОРОТ</div><h1>Управление планом посевов</h1><p class="muted">Изменяй культуры и хозяйства по полям. Сохранение публикует изменения игрокам.</p></div><span class="chip">🔒 Запись только через GitHub</span></div>
+<section class="panel access">
+<div>
+<h2>Доступ администратора</h2>
+<div class="tokenline"><input id="token" type="password" aria-label="GitHub access token" placeholder="GitHub fine-grained token" spellcheck="false" autocomplete="off"><button id="login">Подключить GitHub</button><button id="logout" class="secondary" hidden>Отключить</button></div>
+<div class="tip">Нужен токен GitHub с правом <b>Contents: Read and write</b> только для репозитория <b>novosergievka</b>. <a target="_blank" rel="noopener noreferrer" href="https://github.com/settings/personal-access-tokens/new">Создать токен ↗</a>. Токен не сохраняется в браузере и не передаётся на этот сайт: он отправляется непосредственно GitHub API. Никому его не отправляй.</div>
+</div>
+<div><span id="accessStatus" class="chip">Просмотр · без прав записи</span></div>
+</section>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+<div class="layout">
+<section class="panel">
+<div class="selectbar"><h2 style="margin:0">Выбери поле</h2><small id="count">30 полей</small></div>
+<div id="buttons" class="fields"></div>
+<div class="note">Выделенная рамка означает несохранённые изменения для этого поля. Удобно сначала настроить несколько полей, а затем нажать «Опубликовать план».</div>
+</section>
+<section class="panel">
+<div class="selectbar"><h2 id="fieldHeading" style="margin:0">Поле №1</h2><small id="changedLabel">Не изменено</small></div>
+<label class="owner">Хозяйство / ответственный<input id="owner" placeholder="Например, Колхоз Заря"></label>
+<div class="editorgrid" id="yearFields">
+<div class="cropfield"><div class="fieldhead"><strong>Год 1</strong><span>Сезон 1</span></div><label>Культура<input id="crop0" list="cropOptions" placeholder="Пшеница"></label></div>
+<div class="cropfield"><div class="fieldhead"><strong>Год 2</strong><span>Сезон 2</span></div><label>Культура<input id="crop1" list="cropOptions" placeholder="Ячмень"></label></div>
+<div class="cropfield"><div class="fieldhead"><strong>Год 3</strong><span>Сезон 3</span></div><label>Культура<input id="crop2" list="cropOptions" placeholder="Рапс"></label></div>
+<div class="cropfield"><div class="fieldhead"><strong>Год 4</strong><span>Сезон 4</span></div><label>Культура<input id="crop3" list="cropOptions" placeholder="Соя"></label></div>
+</div>
+<datalist id="cropOptions">
+<option value="Пшеница"><option value="Ячмень"><option value="Канола"><option value="Рапс"><option value="Овёс"><option value="Кукуруза"><option value="Подсолнечник"><option value="Соевые бобы"><option value="Соя"><option value="Картофель"><option value="Свёкла"><option value="Сахарная свёкла"><option value="Сорго"><option value="Рис"><option value="Длиннозёрный рис"><option value="Хлопок"><option value="Виноград"><option value="Трава"><option value="Пар"><option value="Не назначено">
+</datalist>
+<label style="margin-top:14px">Примечания для игроков<textarea id="notes" maxlength="350" placeholder="Например: после уборки внести удобрения; поле закреплено за игроком..."></textarea></label>
+<div class="editor-actions"><button id="prev" class="secondary">← Предыдущее</button><button id="next" class="secondary">Следующее →</button><button id="revert" class="secondary">Отменить изменения поля</button></div>
+</section>
+</div>
+<section class="panel bulk">
+<h2>Быстро назначить одну культуру нескольким полям</h2>
+<div class="bulk-grid">
+<label>Номера полей<input id="bulkIds" placeholder="Например: 1, 2, 5-8"></label>
+<label>Игровой год<select id="bulkYear"><option value="0">Год 1</option><option value="1">Год 2</option><option value="2">Год 3</option><option value="3">Год 4</option></select></label>
+<label>Что посадить<input id="bulkCrop" list="cropOptions" placeholder="Например, Пшеница"></label>
+<button id="bulkApply">Применить</button>
+</div><div class="help">Изменения сначала отображаются в редакторе. На сайт игроков они попадут только после публикации.</div>
+</section>
+<section class="panel summary"><h2>Общий план по всем полям</h2><div class="tablewrap"><table><thead><tr><th>Поле</th><th>Хозяйство</th><th>Год 1</th><th>Год 2</th><th>Год 3</th><th>Год 4</th></tr></thead><tbody id="overview"></tbody></table></div></section>
+<section class="panel" style="margin-top:17px">
+<h2>Публикация</h2>
+<p class="muted">После сохранения GitHub Pages автоматически обновит карту. Игроки увидят изменения при обновлении страницы. Без авторизации кнопка публикации недоступна.</p>
+<label style="font-weight:500"><input id="realPlan" type="checkbox" style="width:auto;display:inline;min-height:0;margin:0 7px 0 0">Это утверждённый план: убрать отметку «ДЕМО» у игроков</label>
+<div class="submitline"><button id="save" class="primary" disabled>🌾 Опубликовать план на сайте</button><button id="export" class="secondary">Скачать резервную копию CSV</button><span id="editStatus" class="muted">Нет несохранённых изменений</span></div>
+</section>
+</main>
+<script>
+'use strict';
+const REPO='2001sergeyponomarev-netizen/novosergievka',API='https://api.github.com/repos/'+REPO+'/contents/';
+const $=x=>document.getElementById(x);
+let token='',rows=[],original='',sha='',selected=1,dirty=new Set(),authorized=false,settingsSha='',settings=null,originalDemo=true;
+const blank=(id)=>({field:id,owner:'—',year1:'Не назначено',year2:'Не назначено',year3:'Не назначено',year4:'Не назначено',notes:''});
+function show(msg,type){const s=$('status');s.className='status'+(msg?' show':'')+(type?' '+type:'');s.textContent=msg}
+function parseDelimited(text){
+ const rs=[],out=[];let val='',quote=false;const t=String(text||'').replace(/^\uFEFF/,'');
+ for(let i=0;i<t.length;i++){const ch=t[i];if(ch==='"'){if(quote&&t[i+1]==='"'){val+='"';i++}else quote=!quote}
+ else if(ch===';'&&!quote){out.push(val);val=''}
+ else if((ch==='\n'||ch==='\r')&&!quote){if(ch==='\r'&&t[i+1]==='\n')i++;out.push(val);if(out.some(x=>x!==''))rs.push(out.slice());out.length=0;val=''}
+ else val+=ch}
+ out.push(val);if(out.some(x=>x!==''))rs.push(out);
+ if(rs.length<2)throw Error('CSV пуст или повреждён');
+ const header=rs.shift().map(v=>v.trim());
+ const dat=rs.map(r=>Object.fromEntries(header.map((h,i)=>[h,(r[i]||'').trim()])));
+ return dat.filter(r=>Number(r.field)>0);
+}
+function csvCell(s){s=String(s==null?'':s);return /[;"\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
+function makeCsv(){const heads=['field','owner','year1','year2','year3','year4','notes'];return '\uFEFF'+heads.join(';')+'\r\n'+rows.map(r=>heads.map(h=>csvCell(r[h])).join(';')).join('\r\n')+'\r\n'}
+function normalize(data){
+ const map=new Map();for(const a of data){const id=Number(a.field);if(id>=1&&id<=30)map.set(id,{field:id,owner:a.owner||'—',year1:a.year1||'Не назначено',year2:a.year2||'Не назначено',year3:a.year3||'Не назначено',year4:a.year4||'Не назначено',notes:a.notes||''})}
+ return Array.from({length:30},(_,i)=>map.get(i+1)||blank(i+1));
+}
+function base64decode(b64){const binary=atob(b64.replace(/\s/g,'')),buf=Uint8Array.from(binary,c=>c.charCodeAt(0));return new TextDecoder('utf-8').decode(buf)}
+function base64encode(s){const b=new TextEncoder().encode(s);let result='';for(let i=0;i<b.length;i+=16384)result+=String.fromCharCode(...b.subarray(i,i+16384));return btoa(result)}
+async function api(path,options){
+ const headers={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(token?{'Authorization':'Bearer '+token}:{})};
+ if(options&&options.body)headers['Content-Type']='application/json';
+ const response=await fetch(API+path,{...options,headers,cache:'no-store'});
+ if(!response.ok){const hint=response.status===401?'Токен неверный или истёк':response.status===403?'Нет доступа. Проверь права Contents: Read and write и выбранный репозиторий':response.status===409?'Конфликт: файл изменён на GitHub. Обновите страницу':response.status===404?'Не найден файл или нет доступа к репозиторию':'Ошибка GitHub: HTTP '+response.status;throw Error(hint)}
+ return response.json();
+}
+function populate(){const grid=$('buttons');grid.replaceChildren();for(let i=1;i<=30;i++){const b=document.createElement('button');b.textContent=i;b.type='button';b.dataset.id=i;b.addEventListener('click',()=>choose(i));grid.append(b)}}
+function choose(id){selected=Math.max(1,Math.min(30,id));const r=rows[selected-1];$('fieldHeading').textContent='Поле №'+selected;$('owner').value=r.owner==='—'?'':r.owner;for(let i=0;i<4;i++)$('crop'+i).value=r['year'+(i+1)]==='Не назначено'?'':r['year'+(i+1)];$('notes').value=r.notes;$('changedLabel').textContent=dirty.has(selected)?'Не сохранено':'Нет изменений';for(const b of $('buttons').children){const n=Number(b.dataset.id);b.classList.toggle('active',n===selected);b.classList.toggle('changed',dirty.has(n))}}
+function edit(){const r=rows[selected-1];r.owner=$('owner').value.trim()||'—';for(let i=0;i<4;i++)r['year'+(i+1)]=$('crop'+i).value.trim()||'Не назначено';r.notes=$('notes').value.trim();mark();renderTable()}
+function mark(){dirty=new Set();const o=JSON.parse(original||'[]');rows.forEach((r,i)=>{if(JSON.stringify(r)!==JSON.stringify(o[i]))dirty.add(i+1)});$('editStatus').textContent=dirty.size?dirty.size+' полей с изменениями':'Нет несохранённых изменений';$('editStatus').className=dirty.size?'dirty':'muted';for(const b of $('buttons').children)b.classList.toggle('changed',dirty.has(Number(b.dataset.id)));$('changedLabel').textContent=dirty.has(selected)?'Не сохранено':'Нет изменений'}
+function renderTable(){const body=$('overview');body.replaceChildren();for(const r of rows){const tr=document.createElement('tr');const t=document.createElement('td'),b=document.createElement('button');b.textContent='№'+r.field;b.type='button';b.onclick=()=>{choose(r.field);scrollTo({top:0,behavior:'smooth'})};t.append(b);tr.append(t);for(const key of ['owner','year1','year2','year3','year4']){const td=document.createElement('td');td.textContent=r[key];tr.append(td)}body.append(tr)}}
+function setLogged(ok){authorized=ok;$('save').disabled=!ok;$('logout').hidden=!ok;$('login').hidden=ok;$('token').hidden=ok;$('accessStatus').textContent=ok?'✓ GitHub подключён · запись разрешена':'Просмотр · без прав записи'}
+function setRows(dat){rows=normalize(dat);original=JSON.stringify(rows);dirty.clear();populate();choose(selected);renderTable();mark()}
+function parseIds(s){
+ const result=new Set();for(const part of s.split(/[,;\s]+/).filter(Boolean)){const a=part.match(/^(\d+)(?:-(\d+))?$/);if(!a)throw Error('Используй номера, например 1, 3, 7-12');let lo=Number(a[1]),hi=a[2]?Number(a[2]):lo;if(lo<1||hi>30||lo>hi)throw Error('Номер поля должен быть от 1 до 30');for(let n=lo;n<=hi;n++)result.add(n)}
+ if(!result.size)throw Error('Укажи хотя бы одно поле');return Array.from(result);
+}
+async function login(){
+ const value=$('token').value.trim();if(!value){show('Вставь GitHub token в поле доступа','error');return}
+ token=value;$('token').value='';$('login').disabled=true;show('Проверка доступа к GitHub…');
+ try{
+ const file=await api('data/plan.csv');if(!file.sha||!file.content)throw Error('GitHub не вернул данные файла');
+ sha=file.sha;const dat=parseDelimited(base64decode(file.content));
+ const conf=await api('data/settings.json');settings=JSON.parse(base64decode(conf.content));settingsSha=conf.sha;
+ setRows(dat);originalDemo=Boolean(settings.demoMode);$('realPlan').checked=!originalDemo;
+ setLogged(true);show('Подключение успешно. Можно изменять поля и публиковать план.','success');
+ }catch(e){token='';setLogged(false);show(e.message||String(e),'error')}
+ finally{$('login').disabled=false}
+}
+async function save(){
+ if(!authorized||!token){show('Для публикации требуется вход через GitHub','error');return}
+ $('save').disabled=true;show('Сохраняю план на GitHub…');
+ try{
+  const result=await api('data/plan.csv',{method:'PUT',body:JSON.stringify({message:'Update crop rotation plan from admin panel',content:base64encode(makeCsv()),sha,branch:'main'})});
+  sha=result.content.sha;original=JSON.stringify(rows);mark();
+  let warning='';
+  const newDemo=!$('realPlan').checked;
+  if(settings&&newDemo!==Boolean(settings.demoMode)){
+   try{settings.demoMode=newDemo;const updated=await api('data/settings.json',{method:'PUT',body:JSON.stringify({message:'Update real-plan demo badge setting',content:base64encode(JSON.stringify(settings,null,2)+'\n'),sha:settingsSha,branch:'main'})});settingsSha=updated.content.sha;originalDemo=newDemo}
+   catch(e){warning='\nВнимание: отметку ДЕМО изменить не удалось: '+e.message}
+  }
+  show('План успешно опубликован. Игроки увидят изменения после обновления страницы и завершения GitHub Pages.'+warning,'success');
+ }catch(e){show('Не удалось опубликовать: '+e.message,'error')}
+ finally{$('save').disabled=!authorized}
+}
+async function init(){
+ $('login').onclick=login;$('logout').onclick=()=>{token='';sha='';setLogged(false);show('Вход завершён. Данные можно просматривать, но сохранять нельзя.','success')};
+ $('token').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+ $('prev').onclick=()=>choose(selected===1?30:selected-1);$('next').onclick=()=>choose(selected===30?1:selected+1);
+ for(const x of ['owner','crop0','crop1','crop2','crop3','notes'])$(x).addEventListener('input',edit);
+ $('revert').onclick=()=>{const orig=JSON.parse(original||'[]');rows[selected-1]=structuredClone(orig[selected-1]);choose(selected);mark();renderTable()};
+ $('bulkApply').onclick=()=>{try{const nums=parseIds($('bulkIds').value),y=Number($('bulkYear').value)+1,c=$('bulkCrop').value.trim();if(!c)throw Error('Укажите культуру');for(const n of nums)rows[n-1]['year'+y]=c;choose(selected);mark();renderTable();show('Назначено: '+c+' · год '+y+' · поля '+nums.join(', '),'success')}catch(e){show(e.message,'error')}};
+ $('export').onclick=()=>{const blob=new Blob([makeCsv()],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='novosergievka-plan.csv';a.click();setTimeout(()=>URL.revokeObjectURL(u),3000)};
+ $('save').onclick=save;
+ addEventListener('beforeunload',e=>{if(dirty.size){e.preventDefault();e.returnValue=''}});
+ try{const r=await fetch('data/plan.csv',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);setRows(parseDelimited(await r.text()))}catch(e){setRows(Array.from({length:30},(_,i)=>blank(i+1)));show('Не удалось загрузить общий план, используется пустой шаблон. Обнови страницу.','error')}
+ try{const r=await fetch('data/settings.json',{cache:'no-store'});if(r.ok){settings=await r.json();originalDemo=Boolean(settings.demoMode);$('realPlan').checked=!originalDemo}}catch(e){}
+}
+init();
+</script>
+</body></html>
