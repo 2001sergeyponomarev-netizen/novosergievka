@@ -22,7 +22,7 @@ aside{padding:18px}.eyebrow{color:var(--accent);font-weight:750;letter-spacing:.
 footer{color:#a7b8a5;font-size:12px;display:flex;justify-content:space-between;gap:15px;margin-top:20px}a{color:#d1e99b}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #cce5a4;outline-offset:2px}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.intro{align-items:start;flex-direction:column}.viewonly{display:none}aside{padding:15px}}
 @media(max-width:550px){main{padding:15px 10px 24px}.filters{display:grid;grid-template-columns:1fr 1fr}.filters label input,.filters label select{min-width:0;width:100%}.filters label:nth-child(3){grid-column:1/-1}.filters button{grid-column:1/-1}.hint{font-size:9px}.brand strong{font-size:16px}.fieldnumber{font-size:31px}footer{display:block}}
-.photo-map #labels{display:none}
+.photo-map #labels text{display:none}.photo-map #labels text[data-id="28"]{display:block;fill:#fff;stroke:#111;stroke-width:6;font-size:27px}
 .photo-map .field{opacity:0.015;fill-opacity:0;stroke:transparent;pointer-events:all}
 .photo-map .field:hover,.photo-map .field:focus{opacity:.4;fill-opacity:.38;stroke:#f5ffe0;stroke-width:5}
 .photo-map .field.selected{opacity:.34;fill-opacity:.24;stroke:#ffe79b;stroke-width:8;filter:drop-shadow(0 0 6px #fff2a4)}
@@ -65,7 +65,7 @@ footer{color:#a7b8a5;font-size:12px;display:flex;justify-content:space-between;g
 <div class="picker"><div class="pickerhead"><b>Быстрый выбор поля</b><span id="counter">30 из 30</span></div><div class="fields" id="buttons"></div></div>
 </aside>
 </div>
-<footer><span>🌱 Made in USSR · Farming Simulator 25</span><span>План меняет только администратор через GitHub. <a href="README.md">Инструкция</a></span></footer>
+<footer><span>🌱 Made in USSR · Farming Simulator 25</span><span>Посевы изменяет администратор. <a href="admin.html">Панель администратора</a> · <a href="README.md">Инструкция</a></span></footer>
 </main>
 <script>
 'use strict';
@@ -124,7 +124,7 @@ function makeMap(){
   const pair=coords.split(' ').map(v=>v.split(',').map(Number));
   const xx=pair.reduce((s,a)=>s+a[0],0)/pair.length;
   const yy=pair.reduce((s,a)=>s+a[1],0)/pair.length;
-  const text=document.createElementNS(ns,'text');text.setAttribute('x',xx);text.setAttribute('y',yy);text.setAttribute('class','fieldnumber');text.textContent=id;$('labels').append(text);
+  const text=document.createElementNS(ns,'text');text.setAttribute('x',xx);text.setAttribute('y',yy);text.setAttribute('class','fieldnumber');text.setAttribute('data-id',id);text.textContent=id;$('labels').append(text);
  });
  for(let i=1;i<=30;i++){const b=document.createElement('button');b.textContent=i;b.dataset.id=i;b.setAttribute('aria-label','Открыть поле №'+i);b.addEventListener('click',()=>choose(i));$('buttons').append(b)}
 }
@@ -145,9 +145,18 @@ function match(id){return (!search||String(id).includes(search)||data(id).owner.
 function updateFilter(){const sel=$('filter'),prev=sel.value,opts=[...new Set(Array.from({length:30},(_,i)=>crop(i+1)))].sort((a,b)=>a.localeCompare(b,'ru'));sel.innerHTML='<option value="">Все культуры</option>';opts.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;sel.append(o)});sel.value=opts.includes(prev)?prev:'';filter=sel.value}
 function readHash(){const x=new URLSearchParams(location.hash.substring(1)),id=Number(x.get('field')),y=Number(x.get('year'));if(id>=1&&id<=30)selected=id;if(y>=1&&y<=4)year=y-1;$('year').value=year}
 function csvRows(text){
- const lines=text.replace(/^\uFEFF/,'').trim().split(/\r?\n/);if(lines.length<2)return [];
- const delim=lines[0].includes(';')?';':',';const cols=lines.shift().split(delim).map(s=>s.trim());
- return lines.map(line=>{let parts=line.split(delim);return Object.fromEntries(cols.map((x,i)=>[x,(parts[i]||'').replace(/^"|"$/g,'').trim()]))});
+ const rs=[],out=[];let val='',quote=false;const t=String(text||'').replace(/^\uFEFF/,'');
+ const delim=t.split(/\r?\n/,1)[0].includes(';')?';':',';
+ for(let i=0;i<t.length;i++){
+  const ch=t[i];
+  if(ch==='"'){if(quote&&t[i+1]==='"'){val+='"';i++}else quote=!quote}
+  else if(ch===delim&&!quote){out.push(val);val=''}
+  else if((ch==='\n'||ch==='\r')&&!quote){if(ch==='\r'&&t[i+1]==='\n')i++;out.push(val);if(out.some(x=>x!==''))rs.push(out.slice());out.length=0;val=''}
+  else val+=ch
+ }
+ out.push(val);if(out.some(x=>x!==''))rs.push(out);
+ const header=(rs.shift()||[]).map(s=>s.trim());
+ return rs.map(row=>Object.fromEntries(header.map((key,i)=>[key,(row[i]||'').trim()])))
 }
 function setNotice(s){$('notice').textContent=s;$('notice').classList.toggle('show',!!s)}
 function zoom(f,x=.5,y=.5){const w=Math.max(310,Math.min(1536,view.w*f)),h=w*2/3;view.x=Math.max(0,Math.min(1536-w,view.x+x*(view.w-w)));view.y=Math.max(0,Math.min(1024-h,view.y+y*(view.h-h)));view.w=w;view.h=h;$('map').setAttribute('viewBox',[view.x,view.y,w,h].join(' '))}
