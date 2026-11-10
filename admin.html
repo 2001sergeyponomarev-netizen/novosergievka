@@ -135,7 +135,7 @@ function choose(id){selected=Math.max(1,Math.min(30,id));const r=rows[selected-1
 function edit(){const r=rows[selected-1];r.owner=$('owner').value.trim()||'—';for(let i=0;i<4;i++)r['year'+(i+1)]=$('crop'+i).value.trim()||'Не назначено';r.notes=$('notes').value.trim();mark();renderTable()}
 function mark(){dirty=new Set();const o=JSON.parse(original||'[]');rows.forEach((r,i)=>{if(JSON.stringify(r)!==JSON.stringify(o[i]))dirty.add(i+1)});$('editStatus').textContent=dirty.size?dirty.size+' полей с изменениями':'Нет несохранённых изменений';$('editStatus').className=dirty.size?'dirty':'muted';for(const b of $('buttons').children)b.classList.toggle('changed',dirty.has(Number(b.dataset.id)));$('changedLabel').textContent=dirty.has(selected)?'Не сохранено':'Нет изменений'}
 function renderTable(){const body=$('overview');body.replaceChildren();for(const r of rows){const tr=document.createElement('tr');const t=document.createElement('td'),b=document.createElement('button');b.textContent='№'+r.field;b.type='button';b.onclick=()=>{choose(r.field);scrollTo({top:0,behavior:'smooth'})};t.append(b);tr.append(t);for(const key of ['owner','year1','year2','year3','year4']){const td=document.createElement('td');td.textContent=r[key];tr.append(td)}body.append(tr)}}
-function setLogged(ok){authorized=ok;$('save').disabled=!ok;$('logout').hidden=!ok;$('login').hidden=ok;$('token').hidden=ok;$('accessStatus').textContent=ok?'✓ GitHub подключён · запись разрешена':'Просмотр · без прав записи'}
+function setLogged(ok){authorized=ok;$('save').disabled=!ok;$('logout').hidden=!ok;$('login').hidden=ok;$('token').hidden=ok;$('accessStatus').textContent=ok?'✓ GitHub подключён':'Просмотр · без прав записи'}
 function setRows(dat){rows=normalize(dat);original=JSON.stringify(rows);dirty.clear();populate();choose(selected);renderTable();mark()}
 function parseIds(s){
  const result=new Set();for(const part of s.split(/[,;\s]+/).filter(Boolean)){const a=part.match(/^(\d+)(?:-(\d+))?$/);if(!a)throw Error('Используй номера, например 1, 3, 7-12');let lo=Number(a[1]),hi=a[2]?Number(a[2]):lo;if(lo<1||hi>30||lo>hi)throw Error('Номер поля должен быть от 1 до 30');for(let n=lo;n<=hi;n++)result.add(n)}
@@ -149,7 +149,7 @@ async function login(){
  sha=file.sha;const dat=parseDelimited(base64decode(file.content));
  const conf=await api('data/settings.json');settings=JSON.parse(base64decode(conf.content));settingsSha=conf.sha;
  setRows(dat);originalDemo=Boolean(settings.demoMode);$('realPlan').checked=!originalDemo;
- setLogged(true);show('Подключение успешно. Можно изменять поля и публиковать план.','success');
+ setLogged(true);show('GitHub подключён. Можно изменить поля и попробовать опубликовать план. Для записи нужны права Contents: Read and write.','success');
  }catch(e){token='';setLogged(false);show(e.message||String(e),'error')}
  finally{$('login').disabled=false}
 }
